@@ -1,5 +1,10 @@
 <h1>
-    {{digits}}
+    <!-- implicit way to subscribe digi -->
+    {{ digi | async }}
 </h1>
 
-<button (click)="sendCount()">count</button>
+<h2>
+    <!--<p *ngFor="let i of digi"> {{ i }} </p>-->
+</h2>
+
+<button id="btn" (click)="sendCount()">count</button>
