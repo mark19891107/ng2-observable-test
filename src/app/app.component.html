@@ -1,10 +1,11 @@
+<button id="btn" (click)="sendCount()">count</button>
+
+<h2>
+    <!--<p *ngFor="let i of obsfigs | async"> {{ i }} </p>-->
+    {{ obsfigs | async }}
+</h2>
+
 <h1>
     <!-- implicit way to subscribe digi -->
     {{ digi | async }}
 </h1>
-
-<h2>
-    <!--<p *ngFor="let i of digi"> {{ i }} </p>-->
-</h2>
-
-<button id="btn" (click)="sendCount()">count</button>

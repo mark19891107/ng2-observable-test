@@ -12,14 +12,18 @@ export class AppComponent {
 
   constructor(private dataService:DataService) { }
 
-  // title = 'app works!';
-  // digi: Observable<Array<string>>
   digi
+  // obsfigs: Observable<Array<string>>
+  obsfigs: Observable<string>
 
   ngOnInit(){
+    /* get the figs */
+    this.obsfigs = this.dataService.figs
+      .map( data => "fig: "+data )
+    /* get the digis */
     let now = Date.now()
-    let observable = this.dataService.digis
-      .map((data:MouseEvent,idx)=>{
+    this.digi = this.dataService.digis
+      .map((data:MouseEvent, idx)=>{
         // console.log("map 1")
         // return data
         return idx + "->" + new Date(data.timeStamp + now).toTimeString()
@@ -36,15 +40,13 @@ export class AppComponent {
         // console.log(number)
       // })
 
-    /* subscribe the observable */
+    /* subscribe the observable explicity */
     // observable.subscribe( (val) => this.digi = val )
-
-    /* return the observable */
-    this.digi = observable
   }
 
   sendCount(){
-    this.dataService.Count(this.digi);
+    [this.digi, this.obsfigs] = this.dataService.Count(this.digi, this.obsfigs);
+    // this.dataService.Count(this.digi, this.obsfigs);
   }
 
 }
